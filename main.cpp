@@ -52,7 +52,7 @@ int createPortal(){
         else if(portal_key == buffer){
             std::cout << "[INFO] Inicializando portal ..." << std::endl;
             PortalInterface portal;
-            portal.buildRequest();
+            portal.init();
         }
         else if(admin_key == buffer){
             std::cout << "Inicializando administrador ..." << std::endl;

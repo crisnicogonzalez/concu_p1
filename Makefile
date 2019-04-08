@@ -285,6 +285,60 @@ client/WeatherClient.cpp.s:
 	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/client/WeatherClient.cpp.s
 .PHONY : client/WeatherClient.cpp.s
 
+dto/FinancialQuotationDTO.o: dto/FinancialQuotationDTO.cpp.o
+
+.PHONY : dto/FinancialQuotationDTO.o
+
+# target to build an object file
+dto/FinancialQuotationDTO.cpp.o:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/dto/FinancialQuotationDTO.cpp.o
+.PHONY : dto/FinancialQuotationDTO.cpp.o
+
+dto/FinancialQuotationDTO.i: dto/FinancialQuotationDTO.cpp.i
+
+.PHONY : dto/FinancialQuotationDTO.i
+
+# target to preprocess a source file
+dto/FinancialQuotationDTO.cpp.i:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/dto/FinancialQuotationDTO.cpp.i
+.PHONY : dto/FinancialQuotationDTO.cpp.i
+
+dto/FinancialQuotationDTO.s: dto/FinancialQuotationDTO.cpp.s
+
+.PHONY : dto/FinancialQuotationDTO.s
+
+# target to generate assembly for a file
+dto/FinancialQuotationDTO.cpp.s:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/dto/FinancialQuotationDTO.cpp.s
+.PHONY : dto/FinancialQuotationDTO.cpp.s
+
+dto/ResponseDTO.o: dto/ResponseDTO.cpp.o
+
+.PHONY : dto/ResponseDTO.o
+
+# target to build an object file
+dto/ResponseDTO.cpp.o:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/dto/ResponseDTO.cpp.o
+.PHONY : dto/ResponseDTO.cpp.o
+
+dto/ResponseDTO.i: dto/ResponseDTO.cpp.i
+
+.PHONY : dto/ResponseDTO.i
+
+# target to preprocess a source file
+dto/ResponseDTO.cpp.i:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/dto/ResponseDTO.cpp.i
+.PHONY : dto/ResponseDTO.cpp.i
+
+dto/ResponseDTO.s: dto/ResponseDTO.cpp.s
+
+.PHONY : dto/ResponseDTO.s
+
+# target to generate assembly for a file
+dto/ResponseDTO.cpp.s:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/dto/ResponseDTO.cpp.s
+.PHONY : dto/ResponseDTO.cpp.s
+
 dto/WeatherDTO.o: dto/WeatherDTO.cpp.o
 
 .PHONY : dto/WeatherDTO.o
@@ -744,6 +798,12 @@ help:
 	@echo "... client/WeatherClient.o"
 	@echo "... client/WeatherClient.i"
 	@echo "... client/WeatherClient.s"
+	@echo "... dto/FinancialQuotationDTO.o"
+	@echo "... dto/FinancialQuotationDTO.i"
+	@echo "... dto/FinancialQuotationDTO.s"
+	@echo "... dto/ResponseDTO.o"
+	@echo "... dto/ResponseDTO.i"
+	@echo "... dto/ResponseDTO.s"
 	@echo "... dto/WeatherDTO.o"
 	@echo "... dto/WeatherDTO.i"
 	@echo "... dto/WeatherDTO.s"

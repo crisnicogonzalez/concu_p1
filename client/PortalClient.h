@@ -15,6 +15,7 @@
 #include "../ipc/FifoEscritura.h"
 #include "Client.h"
 #include "../serializer/WeatherSerializer.h"
+#include "../dto/FinancialQuotationDTO.h"
 
 class PortalClient :public Client{
 
@@ -23,6 +24,8 @@ public:
         requestChannel.abrir();
     }
     void get(Resource resource,std::string resourceId);
+    void updateWeather(std::string id,WeatherDTO weather);
+    void updateFinancialQuotation(std::string id,FinancialQuotationDTO financialQuotation);
 
 protected:
     FifoEscritura requestChannel;

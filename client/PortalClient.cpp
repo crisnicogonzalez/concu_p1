@@ -22,3 +22,34 @@ void PortalClient::get(Resource resource, std::string resourceId) {
         cout << "[PortalClient] [ERROR] cannot send message";
     }
 }
+
+
+void PortalClient::updateFinancialQuotation(std::string id, FinancialQuotationDTO financialQuotation) {
+    cout << "[PortalClient] [INFO] PUT financial quotation" << std::endl;
+    builder
+    .setResource(COTIZACION)
+    ->setClientId(to_string(getppid()))
+    ->setMethod(PUT)
+    ->setResourceId(id)
+    ->setBody("");
+
+}
+
+
+void PortalClient::updateWeather(std::string id, WeatherDTO weather) {
+    cout << "[PortalClient] [INFO] PUT weather" << std::endl;
+    Request request = builder
+            .setResource(CLIMA)
+            ->setClientId(to_string(getppid()))
+            ->setMethod(PUT)
+            ->setResourceId(id)
+            ->setBody(weatherSerializer.serialize(weather))
+            ->getResult();
+
+    string requestSerialized = serializer.serialize(request);
+    if(send(requestChannel,requestSerialized)){
+        cout << "[PortalClient] [INFO] se envió request para actualizar datos" << endl;
+        string message = readOfChannel("PC",request.getClientId(),"PS");
+
+    }
+}

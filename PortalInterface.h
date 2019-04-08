@@ -3,13 +3,16 @@
 
 
 #include "client/PortalClient.h"
+#include "Administrator.h"
 
 class PortalInterface {
 public:
     PortalInterface();
     ~PortalInterface();
     void init();
-    void buildRequest();
+    void runClient();
+    void runAdmin();
+    void defineRol();
 
 protected:
     PortalClient client;
