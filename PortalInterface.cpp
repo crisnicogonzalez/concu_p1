@@ -30,7 +30,7 @@ void PortalInterface::runAdmin() {
         std::cout << "2 - Buenos Aires" << std::endl;
         std::cout << "3 - San Pablo" << std::endl;
         getline(std::cin,buffer);
-        client.get(CLIMA,buffer);
+        client.updateWeather(buffer,NULL);
     }
     else if(buffer == "B"){
         std::cout << "¿De que moneda desea saber?" << std::endl;
@@ -38,7 +38,7 @@ void PortalInterface::runAdmin() {
         std::cout << "2 - Dolar" << std::endl;
         std::cout << "3 - Euro" << std::endl;
         getline(std::cin,buffer);
-        client.get(COTIZACION,buffer);
+        client.updateFinancialQuotation(buffer,NULL);
     }
 }
 
@@ -51,7 +51,7 @@ void PortalInterface::defineRol(){
     if(buffer == "1"){
         runClient();
     }else if(buffer == "2"){
-
+        runAdmin();
     }
 }
 

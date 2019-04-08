@@ -26,4 +26,9 @@ RequestBuilder* RequestBuilder::setClientId(string clientId) {
     return this;
 }
 
+RequestBuilder* RequestBuilder::setBody(string body) {
+    requestInformation.setBody(body);
+    return this;
+}
+
 

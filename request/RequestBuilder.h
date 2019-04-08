@@ -14,6 +14,7 @@ public:
     RequestBuilder* setResource(Resource resource);
     RequestBuilder* setResourceId(std::string id);
     RequestBuilder* setClientId(string clientId);
+    RequestBuilder* setBody(string body);
     Request getResult();
 
 protected:

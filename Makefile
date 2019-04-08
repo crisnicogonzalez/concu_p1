@@ -48,10 +48,10 @@ RM = /home/cristiangonzalez/Documents/clion-2019.1/bin/cmake/linux/bin/cmake -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cristiangonzalez/Documents/Facu/concurrentes/news-service
+CMAKE_SOURCE_DIR = /home/cristiangonzalez/Documents/Facu/concurrentes/concu_p1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cristiangonzalez/Documents/Facu/concurrentes/news-service
+CMAKE_BINARY_DIR = /home/cristiangonzalez/Documents/Facu/concurrentes/concu_p1
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cristiangonzalez/Documents/Facu/concurrentes/news-service/CMakeFiles /home/cristiangonzalez/Documents/Facu/concurrentes/news-service/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cristiangonzalez/Documents/Facu/concurrentes/concu_p1/CMakeFiles /home/cristiangonzalez/Documents/Facu/concurrentes/concu_p1/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cristiangonzalez/Documents/Facu/concurrentes/news-service/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cristiangonzalez/Documents/Facu/concurrentes/concu_p1/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
