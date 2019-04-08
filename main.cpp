@@ -1,0 +1,91 @@
+#include <iostream>
+#include <unistd.h>
+#include <wait.h>
+#include "service/WeatherService.h"
+#include "service/FinancialQuotationService.h"
+#include "PortalInterface.h"
+#include "Administrator.h"
+#include "service/PortalService.h"
+
+using namespace std;
+
+static string shut_down_key = "E";
+static string admin_key = "A";
+static string portal_key = "P";
+static string quota_key = "QI";
+static string temperature_key = "TI";
+static string portal_service_key = "PS";
+
+void showOptions(){
+    string buffer;
+    cout << "¿Que desea realizar?" << endl;
+    cout << temperature_key << " : Inicializar el servicio de temperatura,presion y humedad" << endl;
+    cout << quota_key << " : Inicializar el servicio de cotizacion" << endl;
+    cout << portal_key << "  : Conectarse al Portal" << endl;
+    cout << portal_service_key << " :Inicializar servicio de portal" << endl;
+    cout << admin_key  << "  : Inicitalizar el Administrador" << endl;
+    cout << shut_down_key <<"  : Salir" << endl;
+}
+
+
+
+void throwPortalService(){
+    cout << "[MAIN][DEBUG] Throw Portal Service" << endl;
+    //pid_t  pid = fork();
+    //if(pid == 0){
+        PortalService portal;
+        portal.init();
+    //}else{
+     //   cout << "[MAIN][INFO] Se lanzo el servicio con pid: "<<pid<<std::endl;
+    //}
+}
+
+int createPortal(){
+
+    string buffer;
+    while(shut_down_key != buffer){
+        showOptions();
+        getline(cin,buffer);
+        if(shut_down_key == buffer){
+            return 0;
+        }
+        else if(portal_key == buffer){
+            std::cout << "[INFO] Inicializando portal ..." << std::endl;
+            PortalInterface portal;
+            portal.buildRequest();
+        }
+        else if(admin_key == buffer){
+            std::cout << "Inicializando administrador ..." << std::endl;
+            Administrator administrator;
+            return 0;
+        }else if(temperature_key == buffer){
+            std::cout << "Inicializando informador de clima ..." << std::endl;
+            WeatherService temperatureReporter;
+            temperatureReporter.init();
+            return 0;
+        }
+        else if(quota_key == buffer){
+            std::cout << "Inicializando informador de cotización ..." << std::endl;
+            FinancialQuotationService financialQuotationService;
+            financialQuotationService.init();
+            return 0;
+        }else if(portal_service_key == buffer){
+            std::cout << "Inicializando el servicio del portal ..." << std::endl;
+            throwPortalService();
+        }
+
+
+        else{
+            cout << "Unrecognized character" << endl;
+            cout << "Try again" << endl;
+        }
+    }
+}
+
+
+
+
+int main() {
+    createPortal();
+    //waitpid(portal_pid, nullptr,0);
+}
