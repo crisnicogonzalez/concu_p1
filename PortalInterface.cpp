@@ -61,7 +61,7 @@ void PortalInterface::runAdmin() {
     cout << "B : Cotización de monedas extranjeras" << endl;
     getline(cin,buffer);
     if(buffer == "A"){
-        std::cout << "¿De qué ciudad desea saber?" << std::endl;
+        std::cout << "Eliga la ciudad que desea cambiar sus valores" << std::endl;
         std::cout << "1 - Ciudad de Mexico" << std::endl;
         std::cout << "2 - Buenos Aires" << std::endl;
         std::cout << "3 - San Pablo" << std::endl;
@@ -70,7 +70,7 @@ void PortalInterface::runAdmin() {
         client.updateWeather(weatherDto);
     }
     else if(buffer == "B"){
-        std::cout << "¿De que moneda desea saber?" << std::endl;
+        std::cout << "Eliga la moneda que desea cambiar su cotización" << std::endl;
         std::cout << "1 - Real" << std::endl;
         std::cout << "2 - Dolar" << std::endl;
         std::cout << "3 - Euro" << std::endl;

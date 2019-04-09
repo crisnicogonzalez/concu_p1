@@ -52,6 +52,7 @@ void PortalClient::updateWeather(WeatherDTO weather) {
     if(send(requestChannel,requestSerialized)){
         cout << "[PortalClient] [INFO] se envió request para actualizar datos" << endl;
         string message = readOfChannel("PC",request.getClientId(),"PS");
+        weatherSerializer.deserialize(message).print();
 
     }
 }

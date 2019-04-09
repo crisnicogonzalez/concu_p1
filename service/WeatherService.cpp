@@ -1,3 +1,7 @@
+#include <utility>
+
+#include <utility>
+
 #include <iostream>
 #include "WeatherService.h"
 #include "../request/Request.h"
@@ -38,15 +42,29 @@ void WeatherService::init() {
 }
 
 
+void WeatherService::sendResponse(WeatherDTO weather,string clientId) {
+    string response = weatherSerializer.serialize(std::move(weather));
+    if(client.sendToChannel("PS",std::move(clientId),"WS",response)){
+        cout << "[WeatherService] [INFO] sent message correctly" << endl;
+    }
+}
+
 void WeatherService::listen() {
     std::cout << "[WeatherService] [INFO] Listen" << std::endl;
     while(condition){
         const string message = readOfChannel(requestsChannel);
         Request request = serializer.deserialize(message);
-        WeatherDTO weather = weathers[request.getResourceId()];
-        string response = weatherSerializer.serialize(weather);
-        if(client.sendToChannel("PS",request.getClientId(),"WS",response)){
-            cout << "[WeatherService] [INFO] sent message correctly" << endl;
+        if(request.getMethod() == GET){
+            WeatherDTO weather = weathers[request.getResourceId()];
+            sendResponse(weather,request.getClientId());
+        }else{
+            WeatherDTO weather = weatherSerializer.deserialize(request.getBody());
+            WeatherDTO oldWeather = weathers[request.getResourceId()];
+            weather.setName(oldWeather.getName());
+            weathers[request.getResourceId()] = weather;
+            WeatherDTO newWeather = weathers[request.getResourceId()];
+            sendResponse(newWeather,request.getClientId());
+
         }
     }
 

@@ -17,7 +17,7 @@ public:
         builder.setResource(CLIMA);
     }
     string get(string clientID,string id);
-    void put(string clientID,string id,WeatherDTO dto);
+    string put(Request request);
 
 protected:
     FifoEscritura requestSenderChannel;

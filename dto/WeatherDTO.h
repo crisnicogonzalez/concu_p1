@@ -57,11 +57,15 @@ public:
     }
 
     void print(){
-
+        cout <<            ""            << endl;
+        cout <<            ""            << endl;
         cout << "Ciudad      : " << name << endl;
         cout << "Humedad     : " << humidity << endl;
         cout << "Presión     : " << pressure << endl;
         cout << "Temperatura : " << temperature << endl;
+        cout <<            ""            << endl;
+        cout <<            ""            << endl;
+
     }
 
 

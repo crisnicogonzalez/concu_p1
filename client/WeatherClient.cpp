@@ -19,7 +19,13 @@ string WeatherClient::get(string clientID,string id) {
 }
 
 
-void WeatherClient::put(string clientID,string id, WeatherDTO dto) {}
+string WeatherClient::put(Request request) {
+    string requestSerialized = serializer.serialize(request);
+    if(send(requestSenderChannel,requestSerialized)){
+        cout << "[WeatherClient] [INFO] request to update sent!" << endl;
+    }
+    return readOfChannel("PS",request.getClientId(),"WS");
+}
 
 
 

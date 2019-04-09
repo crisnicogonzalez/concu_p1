@@ -33,6 +33,7 @@ protected:
     RequestSerializer serializer;
     map<std::string,WeatherDTO> weathers;
     WeatherSerializer weatherSerializer;
+    void sendResponse(WeatherDTO weather,string clientId);
 };
 
 

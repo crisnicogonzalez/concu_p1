@@ -16,7 +16,10 @@ void PortalService::answerRequest(string requestSerialized){
     string response;
     if(request.getResource() == CLIMA){
         cout << "[PortalService] [INFO ] is weather service" << endl;
-        response = weatherClient.get(request.getClientId(),request.getResourceId());
+        if(request.getMethod() == GET){
+            response = weatherClient.get(request.getClientId(),request.getResourceId());
+        }
+        response = weatherClient.put(request);
     }else{
         cout << "[PortalService] [INFO ] is financial quotation service" << endl;
         response = financialQuotationClient.get(request.getClientId(),request.getResourceId());
