@@ -3,27 +3,27 @@
 #include <utility>
 
 #include <iostream>
-#include "PortalInterface.h"
+#include "PortalMenu.h"
 #include "request/RequestBuilder.h"
 
 
 using namespace std;
 
-PortalInterface::PortalInterface() {
+PortalMenu::PortalMenu() {
     cout << "[DEBUG] To init Portal is neccesary that the services is runned" << endl;
 }
 
 
-PortalInterface::~PortalInterface() {
+PortalMenu::~PortalMenu() {
     cout << "Portal destructor" << endl;
 }
 
-void PortalInterface::init() {
+void PortalMenu::showMenu() {
     cout << "Portal initiliaze" << endl;
-    defineRol();
+    showMenuToSelectRol();
 }
 
-WeatherDTO PortalInterface::buildWeather(string cityId){
+WeatherDTO PortalMenu::buildWeather(string cityId){
     WeatherDTO weather;
     weather.setCityId(std::move(cityId));
     std::string buffer;
@@ -39,7 +39,7 @@ WeatherDTO PortalInterface::buildWeather(string cityId){
     return weather;
 }
 
-FinancialQuotationDTO PortalInterface::buildFinancialQuotation(string coinId) {
+FinancialQuotationDTO PortalMenu::buildFinancialQuotation(string coinId) {
     FinancialQuotationDTO financialQuotation;
     std::string buffer;
     financialQuotation.setCoinId(std::move(coinId));
@@ -54,7 +54,7 @@ FinancialQuotationDTO PortalInterface::buildFinancialQuotation(string coinId) {
 
 }
 
-void PortalInterface::runAdmin() {
+void PortalMenu::showAdministratorMenu() {
     std::string buffer;
     cout << "¿Qué desea cambiar?" << endl;
     cout << "A : Temperatura,presión atmosférica y humedad" << endl;
@@ -80,22 +80,22 @@ void PortalInterface::runAdmin() {
     }
 }
 
-void PortalInterface::defineRol(){
+void PortalMenu::showMenuToSelectRol(){
     std::string buffer;
     cout << "¿Cómo desea conectarse?" << endl;
     cout << "1 - Como Administrador" << endl;
     cout << "2 - Como Client" << endl;
     getline(std::cin,buffer);
     if(buffer == "2"){
-        runClient();
+        showClientMenu();
     }else if(buffer == "1"){
-        runAdmin();
+        showAdministratorMenu();
     }
 }
 
 
 
-void PortalInterface::runClient() {
+void PortalMenu::showClientMenu() {
     std::string buffer;
     std::cout << "¿Qué desea saber?" << std::endl;
     std::cout << "A : Temperatura,presión atmosférica y humedad" << std::endl;
@@ -118,6 +118,6 @@ void PortalInterface::runClient() {
         client.get(COTIZACION,buffer);
     }else{
         std::cout << "[ERROR] Option desconocida, intenta devuelta..." << std::endl;
-        runClient();
+        showClientMenu();
     }
 }

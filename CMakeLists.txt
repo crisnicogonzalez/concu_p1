@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(news_service main.cpp
         service/WeatherService.cpp service/WeatherService.h
         service/FinancialQuotationService.cpp service/FinancialQuotationService.h
-        PortalInterface.cpp PortalInterface.h
+        PortalMenu.cpp PortalMenu.h
         Administrator.cpp Administrator.h
         request/Request.cpp request/Request.h
         request/Resource.cpp request/Resource.h

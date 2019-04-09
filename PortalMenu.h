@@ -5,14 +5,14 @@
 #include "client/PortalClient.h"
 #include "Administrator.h"
 
-class PortalInterface {
+class PortalMenu {
 public:
-    PortalInterface();
-    ~PortalInterface();
-    void init();
-    void runClient();
-    void runAdmin();
-    void defineRol();
+    PortalMenu();
+    ~PortalMenu();
+    void showMenu();
+    void showClientMenu();
+    void showAdministratorMenu();
+    void showMenuToSelectRol();
 
 protected:
     WeatherDTO buildWeather(string cityId);

@@ -3,7 +3,7 @@
 #include <wait.h>
 #include "service/WeatherService.h"
 #include "service/FinancialQuotationService.h"
-#include "PortalInterface.h"
+#include "PortalMenu.h"
 #include "Administrator.h"
 #include "service/PortalService.h"
 
@@ -30,7 +30,6 @@ void showOptions(){
 
 
 int createPortal(){
-
     string buffer;
     while(shut_down_key != buffer){
         showOptions();
@@ -40,8 +39,8 @@ int createPortal(){
         }
         else if(portal_key == buffer){
             std::cout << "[INFO] Inicializando portal ..." << std::endl;
-            PortalInterface portal;
-            portal.init();
+            PortalMenu portal;
+            portal.showMenu();
         }
         else if(admin_key == buffer){
             std::cout << "Inicializando administrador ..." << std::endl;

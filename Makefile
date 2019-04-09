@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/cristiangonzalez/Documents/clion-2019.1/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/home/cristiangonzalez/Documents/clion-2019.1/bin/cmake/linux/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -150,32 +150,32 @@ Administrator.cpp.s:
 	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/Administrator.cpp.s
 .PHONY : Administrator.cpp.s
 
-PortalInterface.o: PortalInterface.cpp.o
+PortalMenu.o: PortalMenu.cpp.o
 
-.PHONY : PortalInterface.o
+.PHONY : PortalMenu.o
 
 # target to build an object file
-PortalInterface.cpp.o:
-	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/PortalInterface.cpp.o
-.PHONY : PortalInterface.cpp.o
+PortalMenu.cpp.o:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/PortalMenu.cpp.o
+.PHONY : PortalMenu.cpp.o
 
-PortalInterface.i: PortalInterface.cpp.i
+PortalMenu.i: PortalMenu.cpp.i
 
-.PHONY : PortalInterface.i
+.PHONY : PortalMenu.i
 
 # target to preprocess a source file
-PortalInterface.cpp.i:
-	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/PortalInterface.cpp.i
-.PHONY : PortalInterface.cpp.i
+PortalMenu.cpp.i:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/PortalMenu.cpp.i
+.PHONY : PortalMenu.cpp.i
 
-PortalInterface.s: PortalInterface.cpp.s
+PortalMenu.s: PortalMenu.cpp.s
 
-.PHONY : PortalInterface.s
+.PHONY : PortalMenu.s
 
 # target to generate assembly for a file
-PortalInterface.cpp.s:
-	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/PortalInterface.cpp.s
-.PHONY : PortalInterface.cpp.s
+PortalMenu.cpp.s:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/PortalMenu.cpp.s
+.PHONY : PortalMenu.cpp.s
 
 client/Client.o: client/Client.cpp.o
 
@@ -810,9 +810,9 @@ help:
 	@echo "... Administrator.o"
 	@echo "... Administrator.i"
 	@echo "... Administrator.s"
-	@echo "... PortalInterface.o"
-	@echo "... PortalInterface.i"
-	@echo "... PortalInterface.s"
+	@echo "... PortalMenu.o"
+	@echo "... PortalMenu.i"
+	@echo "... PortalMenu.s"
 	@echo "... client/Client.o"
 	@echo "... client/Client.i"
 	@echo "... client/Client.s"
