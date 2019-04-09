@@ -7,6 +7,9 @@
 
 
 #include <string>
+#include <iostream>
+
+using namespace std;
 
 class FinancialQuotationDTO {
 
@@ -23,6 +26,10 @@ public:
         coinName = newCoinName;
     }
 
+    void setCoinId(string ID){
+        coinId = ID;
+    }
+
     double getSale(){
         return sale;
     }
@@ -35,10 +42,22 @@ public:
         return coinName;
     }
 
+
+    string getCoinId(){
+        return coinId;
+    }
+
+    void print(){
+        cout << "Moneda: "<< coinName << endl;
+        cout << "Compra: "<< sale << endl;
+        cout << "Venta: "<<purchase << endl;
+    }
+
 protected:
     double sale;
     double purchase;
     std::string coinName;
+    string coinId;
 
 };
 

@@ -555,33 +555,6 @@ request/RequestBuilder.cpp.s:
 	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/request/RequestBuilder.cpp.s
 .PHONY : request/RequestBuilder.cpp.s
 
-request/RequestSerializer.o: request/RequestSerializer.cpp.o
-
-.PHONY : request/RequestSerializer.o
-
-# target to build an object file
-request/RequestSerializer.cpp.o:
-	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/request/RequestSerializer.cpp.o
-.PHONY : request/RequestSerializer.cpp.o
-
-request/RequestSerializer.i: request/RequestSerializer.cpp.i
-
-.PHONY : request/RequestSerializer.i
-
-# target to preprocess a source file
-request/RequestSerializer.cpp.i:
-	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/request/RequestSerializer.cpp.i
-.PHONY : request/RequestSerializer.cpp.i
-
-request/RequestSerializer.s: request/RequestSerializer.cpp.s
-
-.PHONY : request/RequestSerializer.s
-
-# target to generate assembly for a file
-request/RequestSerializer.cpp.s:
-	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/request/RequestSerializer.cpp.s
-.PHONY : request/RequestSerializer.cpp.s
-
 request/Resource.o: request/Resource.cpp.o
 
 .PHONY : request/Resource.o
@@ -608,6 +581,60 @@ request/Resource.s: request/Resource.cpp.s
 request/Resource.cpp.s:
 	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/request/Resource.cpp.s
 .PHONY : request/Resource.cpp.s
+
+serializer/FinancialQuotationSerializer.o: serializer/FinancialQuotationSerializer.cpp.o
+
+.PHONY : serializer/FinancialQuotationSerializer.o
+
+# target to build an object file
+serializer/FinancialQuotationSerializer.cpp.o:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/serializer/FinancialQuotationSerializer.cpp.o
+.PHONY : serializer/FinancialQuotationSerializer.cpp.o
+
+serializer/FinancialQuotationSerializer.i: serializer/FinancialQuotationSerializer.cpp.i
+
+.PHONY : serializer/FinancialQuotationSerializer.i
+
+# target to preprocess a source file
+serializer/FinancialQuotationSerializer.cpp.i:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/serializer/FinancialQuotationSerializer.cpp.i
+.PHONY : serializer/FinancialQuotationSerializer.cpp.i
+
+serializer/FinancialQuotationSerializer.s: serializer/FinancialQuotationSerializer.cpp.s
+
+.PHONY : serializer/FinancialQuotationSerializer.s
+
+# target to generate assembly for a file
+serializer/FinancialQuotationSerializer.cpp.s:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/serializer/FinancialQuotationSerializer.cpp.s
+.PHONY : serializer/FinancialQuotationSerializer.cpp.s
+
+serializer/RequestSerializer.o: serializer/RequestSerializer.cpp.o
+
+.PHONY : serializer/RequestSerializer.o
+
+# target to build an object file
+serializer/RequestSerializer.cpp.o:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/serializer/RequestSerializer.cpp.o
+.PHONY : serializer/RequestSerializer.cpp.o
+
+serializer/RequestSerializer.i: serializer/RequestSerializer.cpp.i
+
+.PHONY : serializer/RequestSerializer.i
+
+# target to preprocess a source file
+serializer/RequestSerializer.cpp.i:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/serializer/RequestSerializer.cpp.i
+.PHONY : serializer/RequestSerializer.cpp.i
+
+serializer/RequestSerializer.s: serializer/RequestSerializer.cpp.s
+
+.PHONY : serializer/RequestSerializer.s
+
+# target to generate assembly for a file
+serializer/RequestSerializer.cpp.s:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/serializer/RequestSerializer.cpp.s
+.PHONY : serializer/RequestSerializer.cpp.s
 
 serializer/WeatherSerializer.o: serializer/WeatherSerializer.cpp.o
 
@@ -828,12 +855,15 @@ help:
 	@echo "... request/RequestBuilder.o"
 	@echo "... request/RequestBuilder.i"
 	@echo "... request/RequestBuilder.s"
-	@echo "... request/RequestSerializer.o"
-	@echo "... request/RequestSerializer.i"
-	@echo "... request/RequestSerializer.s"
 	@echo "... request/Resource.o"
 	@echo "... request/Resource.i"
 	@echo "... request/Resource.s"
+	@echo "... serializer/FinancialQuotationSerializer.o"
+	@echo "... serializer/FinancialQuotationSerializer.i"
+	@echo "... serializer/FinancialQuotationSerializer.s"
+	@echo "... serializer/RequestSerializer.o"
+	@echo "... serializer/RequestSerializer.i"
+	@echo "... serializer/RequestSerializer.s"
 	@echo "... serializer/WeatherSerializer.o"
 	@echo "... serializer/WeatherSerializer.i"
 	@echo "... serializer/WeatherSerializer.s"

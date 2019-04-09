@@ -53,5 +53,5 @@ void const Request::print() {
     const string httpMethod = method == GET ? "GET":"PUT";
     const string resourceS = resource == CLIMA ? "weather": "financial_quotation";
     const string id = resourceId;
-    cout << httpMethod << " /" <<resourceS<<"?id="<<id<<"        clientId:"<<clientId;
+    cout << httpMethod << " /" <<resourceS<<"?id="<<id<<"        clientId:"<<clientId << endl;
 }

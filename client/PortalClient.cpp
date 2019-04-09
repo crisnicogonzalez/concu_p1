@@ -13,10 +13,12 @@ void PortalClient::get(Resource resource, std::string resourceId) {
     request.print();
     string requestSerialized =  serializer.serialize(request);
     if(send(requestChannel,requestSerialized)){
-        cout << "[PortalClient] [INFO] sent message correctly";
+        cout << "[PortalClient] [INFO] sent message correctly"<< endl;
         string message = readOfChannel("PC",request.getClientId(),"PS");
         if(resource == CLIMA){
             weatherSerializer.deserialize(message).print();
+        }else{
+            financialQuotationSerializer.deserialize(message).print();
         }
     }else{
         cout << "[PortalClient] [ERROR] cannot send message";
@@ -36,13 +38,13 @@ void PortalClient::updateFinancialQuotation(std::string id, FinancialQuotationDT
 }
 
 
-void PortalClient::updateWeather(std::string id, WeatherDTO weather) {
+void PortalClient::updateWeather(WeatherDTO weather) {
     cout << "[PortalClient] [INFO] PUT weather" << std::endl;
     Request request = builder
             .setResource(CLIMA)
             ->setClientId(to_string(getppid()))
             ->setMethod(PUT)
-            ->setResourceId(id)
+            ->setResourceId(weather.getCityId())
             ->setBody(weatherSerializer.serialize(weather))
             ->getResult();
 

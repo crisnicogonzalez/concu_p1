@@ -20,4 +20,4 @@ add_executable(news_service main.cpp
         ipc/Fifo.cpp ipc/Fifo.h
         ipc/FifoEscritura.cpp ipc/FifoEscritura.h
         ipc/FifoLectura.cpp ipc/FifoLectura.h
-        utils/Constants.cpp utils/Constants.h request/RequestSerializer.cpp request/RequestSerializer.h service/PortalService.cpp service/PortalService.h client/PortalClient.cpp client/PortalClient.h service/Service.cpp service/Service.h serializer/WeatherSerializer.cpp serializer/WeatherSerializer.h dto/FinancialQuotationDTO.cpp dto/FinancialQuotationDTO.h dto/ResponseDTO.cpp dto/ResponseDTO.h)
+        utils/Constants.cpp utils/Constants.h serializer/RequestSerializer.cpp serializer/RequestSerializer.h service/PortalService.cpp service/PortalService.h client/PortalClient.cpp client/PortalClient.h service/Service.cpp service/Service.h serializer/WeatherSerializer.cpp serializer/WeatherSerializer.h dto/FinancialQuotationDTO.cpp dto/FinancialQuotationDTO.h dto/ResponseDTO.cpp dto/ResponseDTO.h serializer/FinancialQuotationSerializer.cpp serializer/FinancialQuotationSerializer.h)

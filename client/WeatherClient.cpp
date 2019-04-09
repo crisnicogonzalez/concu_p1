@@ -15,7 +15,7 @@ string WeatherClient::get(string clientID,string id) {
         cout << "[WeatherClient] [INFO] sent message correctly!"<<endl;
     }
 
-    return readOfChannel("WC",request.getClientId(),"WS");
+    return readOfChannel("PS",request.getClientId(),"WS");
 }
 
 

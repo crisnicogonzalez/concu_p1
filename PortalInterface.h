@@ -15,6 +15,8 @@ public:
     void defineRol();
 
 protected:
+    WeatherDTO buildWeather(string cityId);
+    FinancialQuotationDTO buildFinancialQuotation(string coinId);
     PortalClient client;
 };
 

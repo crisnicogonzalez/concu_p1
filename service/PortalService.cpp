@@ -12,11 +12,13 @@ void PortalService::init() {
 void PortalService::answerRequest(string requestSerialized){
     cout << "[PortalService] Lei el dato del fifo: " << requestSerialized << endl;
     Request request = serializer.deserialize(requestSerialized);
-    cout << "[PortalService] define resource" << endl;
+    cout << "[PortalService] [INFO ]define service" << endl;
     string response;
     if(request.getResource() == CLIMA){
+        cout << "[PortalService] [INFO ] is weather service" << endl;
         response = weatherClient.get(request.getClientId(),request.getResourceId());
     }else{
+        cout << "[PortalService] [INFO ] is financial quotation service" << endl;
         response = financialQuotationClient.get(request.getClientId(),request.getResourceId());
     }
 
@@ -36,7 +38,6 @@ void PortalService::listen() {
             answerRequest(message);
         }
     }
-    requestChannel.cerrar();
 }
 
 

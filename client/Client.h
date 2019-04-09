@@ -7,7 +7,7 @@
 #include "../ipc/Fifo.h"
 #include "../ipc/FifoEscritura.h"
 #include "../ipc/FifoLectura.h"
-#include "../request/RequestSerializer.h"
+#include "../serializer/RequestSerializer.h"
 
 using namespace std;
 

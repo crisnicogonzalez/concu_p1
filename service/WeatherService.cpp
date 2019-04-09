@@ -7,6 +7,7 @@ static bool condition = true;
 
 WeatherService::~WeatherService() {
     std::cout << "Desconstructor temperature Reporter" << std::endl;
+
 }
 
 
@@ -44,7 +45,7 @@ void WeatherService::listen() {
         Request request = serializer.deserialize(message);
         WeatherDTO weather = weathers[request.getResourceId()];
         string response = weatherSerializer.serialize(weather);
-        if(client.sendToChannel("WC",request.getClientId(),"WS",response)){
+        if(client.sendToChannel("PS",request.getClientId(),"WS",response)){
             cout << "[WeatherService] [INFO] sent message correctly" << endl;
         }
     }

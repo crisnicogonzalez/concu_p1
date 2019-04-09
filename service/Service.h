@@ -18,6 +18,7 @@ protected:
     bool validateMessage(string message);
     bool  endsWith(std::string const &value, std::string const &ending);
     Client client;
+    RequestSerializer requestSerializer;
 
 };
 

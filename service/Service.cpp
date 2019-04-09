@@ -10,7 +10,13 @@
 string Service::readOfChannel(FifoLectura& channel) {
     cout << "[SERVICE] [DEBUG] read of channel:" << channel.getName() <<endl;
     char buffer[BUFFER_SIZE];
-    ssize_t readBytes= channel.leer(static_cast<void*>(buffer),BUFFER_SIZE);
+    ssize_t readBytes = 0;
+    while(readBytes == 0){
+        readBytes = channel.leer(static_cast<void*>(buffer),BUFFER_SIZE);
+        if(readBytes == -1 ){
+            cout << "[SERVICE] [ERROR] channel that doesn't have any processes writing to it" << endl;
+        }
+    }
     cout << "[SERVICE] [DEBUG] read bytes:" << readBytes <<endl;
     std::string message = buffer;
     message.resize(readBytes);

@@ -10,7 +10,7 @@
 #include "../ipc/FifoEscritura.h"
 #include "../utils/Constants.h"
 #include "Service.h"
-#include "../request/RequestSerializer.h"
+#include "../serializer/RequestSerializer.h"
 #include "../dto/WeatherDTO.h"
 #include "../serializer/WeatherSerializer.h"
 #include <map>

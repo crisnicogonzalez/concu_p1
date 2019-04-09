@@ -1,3 +1,5 @@
+#include <utility>
+
 //
 // Created by cristiangonzalez on 06/04/19.
 //
@@ -29,6 +31,10 @@ public:
         return name;
     }
 
+    string getCityId(){
+        return cityId;
+    }
+
 
     void setTemperature(int newTemperature){
         temperature = newTemperature;
@@ -43,7 +49,11 @@ public:
     }
 
     void setName(std::string newName){
-        name = newName;
+        name = std::move(newName);
+    }
+
+    void setCityId(string id){
+        cityId = id;
     }
 
     void print(){
@@ -56,10 +66,11 @@ public:
 
 
 protected:
+    string cityId;
     int temperature;
     int humidity;
     int pressure;
-    std::string name;
+    string name;
 };
 
 
