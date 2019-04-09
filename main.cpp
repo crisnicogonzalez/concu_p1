@@ -29,17 +29,6 @@ void showOptions(){
 
 
 
-void throwPortalService(){
-    cout << "[MAIN][DEBUG] Throw Portal Service" << endl;
-    //pid_t  pid = fork();
-    //if(pid == 0){
-        PortalService portal;
-        portal.init();
-    //}else{
-     //   cout << "[MAIN][INFO] Se lanzo el servicio con pid: "<<pid<<std::endl;
-    //}
-}
-
 int createPortal(){
 
     string buffer;
@@ -71,7 +60,14 @@ int createPortal(){
             return 0;
         }else if(portal_service_key == buffer){
             std::cout << "Inicializando el servicio del portal ..." << std::endl;
-            throwPortalService();
+            std::cout << "¿Desea que los servicios se respondan con delay? (S/N)";
+            getline(cin,buffer);
+            bool withDelay = false;
+            if(buffer == "S"){
+                withDelay = true;
+            }
+            PortalService portal(withDelay);
+            portal.init();
         }
 
 

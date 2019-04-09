@@ -1,7 +1,11 @@
 #include <iostream>
+#include <thread>
+#include <chrono>
 #include "PortalService.h"
 static const bool condition = true;
 using namespace std;
+
+static int MILISECONDS_TO_SLEPP = 5000;
 
 void PortalService::init() {
     cout << "[INFO] init listen requests" << endl;
@@ -9,7 +13,10 @@ void PortalService::init() {
 }
 
 
-void PortalService::answerRequest(string requestSerialized){
+void PortalService::answerRequest(const string& requestSerialized){
+    if (withDelay){
+        std::this_thread::sleep_for(std::chrono::milliseconds(MILISECONDS_TO_SLEPP));
+    }
     cout << "[PortalService] Lei el dato del fifo: " << requestSerialized << endl;
     Request request = serializer.deserialize(requestSerialized);
     cout << "[PortalService] [INFO ]define service" << endl;

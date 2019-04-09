@@ -13,18 +13,21 @@
 class PortalService :public Service{
 
 public:
-    PortalService():requestChannel(KEY_PORTAL_CHANNEL){}
+    PortalService(bool delay):requestChannel(KEY_PORTAL_CHANNEL){
+        withDelay = delay;
+    }
     void init();
 
 
 protected:
     void listen();
-    void answerRequest(string requestSerialized);
+    void answerRequest(const string& requestSerialized);
     WeatherClient weatherClient;
     FinancialQuotationClient financialQuotationClient;
     FifoLectura requestChannel;
     Client client;
     RequestSerializer serializer;
+    bool withDelay;
 
 };
 
