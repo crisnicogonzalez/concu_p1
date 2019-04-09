@@ -66,7 +66,13 @@ int createPortal(){
             if(buffer == "S"){
                 withDelay = true;
             }
-            PortalService portal(withDelay);
+            std::cout << "¿Desea que los servicios se atiendan concurrentemente? (S/N)";
+            getline(cin,buffer);
+            bool concurrently = false;
+            if(buffer == "S"){
+                concurrently = true;
+            }
+            PortalService portal(withDelay,concurrently);
             portal.init();
         }
 

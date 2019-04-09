@@ -13,8 +13,9 @@
 class PortalService :public Service{
 
 public:
-    PortalService(bool delay):requestChannel(KEY_PORTAL_CHANNEL){
+    PortalService(bool delay, bool withThreads):requestChannel(KEY_PORTAL_CHANNEL){
         withDelay = delay;
+        concurrently = withThreads;
     }
     void init();
 
@@ -28,6 +29,7 @@ protected:
     Client client;
     RequestSerializer serializer;
     bool withDelay;
+    bool concurrently;
 
 };
 

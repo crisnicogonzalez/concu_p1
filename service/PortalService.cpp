@@ -5,7 +5,7 @@
 static const bool condition = true;
 using namespace std;
 
-static int MILISECONDS_TO_SLEPP = 5000;
+static int MILISECONDS_TO_SLEEP = 5000;
 
 void PortalService::init() {
     cout << "[INFO] init listen requests" << endl;
@@ -15,7 +15,7 @@ void PortalService::init() {
 
 void PortalService::answerRequest(const string& requestSerialized){
     if (withDelay){
-        std::this_thread::sleep_for(std::chrono::milliseconds(MILISECONDS_TO_SLEPP));
+        std::this_thread::sleep_for(std::chrono::milliseconds(MILISECONDS_TO_SLEEP));
     }
     cout << "[PortalService] Lei el dato del fifo: " << requestSerialized << endl;
     Request request = serializer.deserialize(requestSerialized);
@@ -49,7 +49,14 @@ void PortalService::listen() {
     while(condition){
         string message = readOfChannel(requestChannel);
         if(validateMessage(message)){
-            answerRequest(message);
+            if(concurrently){
+                if(fork() == 0){
+                    answerRequest(message);
+                    exit(0);
+                }
+            }else{
+                answerRequest(message);
+            }
         }
     }
 }
