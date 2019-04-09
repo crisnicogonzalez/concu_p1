@@ -8,7 +8,7 @@
 
 
 WeatherDTO WeatherSerializer::deserialize(std::string weatherSerialized) {
-    vector<string> requestSplitted = split(weatherSerialized,',');
+    vector<string> requestSplitted = split(weatherSerialized,'-');
     WeatherDTO weather;
     weather.setName(requestSplitted[0]);
     weather.setHumidity(atoi(requestSplitted[1].c_str()));
@@ -20,7 +20,7 @@ WeatherDTO WeatherSerializer::deserialize(std::string weatherSerialized) {
 
 std::string WeatherSerializer::serialize(WeatherDTO weather) {
     ostringstream os;
-    os << weather.getName() << ","<<weather.getHumidity() << "," << weather.getPressure() << "," << weather.getTemperature() << ";";
+    os << weather.getName() << "-"<<weather.getHumidity() << "-" << weather.getPressure() << "-" << weather.getTemperature() << ";";
     return os.str();
 }
 

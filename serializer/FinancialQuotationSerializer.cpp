@@ -9,7 +9,7 @@
 
 FinancialQuotationDTO FinancialQuotationSerializer::deserialize(string financialQuotationSerialized){
     FinancialQuotationDTO financialQuotation;
-    vector<string> requestSplitted = split(financialQuotationSerialized,',');
+    vector<string> requestSplitted = split(financialQuotationSerialized,'-');
     financialQuotation.setCoinName(requestSplitted[0]);
     financialQuotation.setSale(atof(requestSplitted[1].c_str()));
     financialQuotation.setPurchase(atof(requestSplitted[2].c_str()));
@@ -19,7 +19,7 @@ FinancialQuotationDTO FinancialQuotationSerializer::deserialize(string financial
 
 string FinancialQuotationSerializer::serialize(FinancialQuotationDTO financialQuotation) {
     ostringstream os;
-    os << financialQuotation.getCoinName() <<"," << financialQuotation.getSale() <<","<< financialQuotation.getPurchase() << ";";
+    os << financialQuotation.getCoinName() <<"-" << financialQuotation.getSale() <<"-"<< financialQuotation.getPurchase() << ";";
     return os.str();
 }
 
