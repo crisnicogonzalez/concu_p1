@@ -27,6 +27,7 @@ public:
     void get(Resource resource,std::string resourceId);
     void updateWeather(WeatherDTO weather);
     void updateFinancialQuotation(std::string id,FinancialQuotationDTO financialQuotation);
+    void closeResponseChannel();
 
 protected:
     FifoEscritura requestChannel;

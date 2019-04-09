@@ -20,6 +20,8 @@ string Client::readOfChannel(string channel) {
     ssize_t readedBytes = fifoLectura.leer(static_cast<void*>(buffer),BUFFER_SIZE);
     std::string response = buffer;
     response.resize ( readedBytes );
+    fifoLectura.cerrar();
+    fifoLectura.eliminar();
     cout << "[Client][INFO] response received" << response << endl;
     return response;
 }

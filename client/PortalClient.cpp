@@ -27,6 +27,10 @@ void PortalClient::get(Resource resource, std::string resourceId) {
 
 
 
+void PortalClient::closeResponseChannel() {
+    //
+}
+
 
 void PortalClient::updateFinancialQuotation(std::string id, FinancialQuotationDTO financialQuotation) {
     cout << "[PortalClient] [INFO] PUT financial quotation" << std::endl;
