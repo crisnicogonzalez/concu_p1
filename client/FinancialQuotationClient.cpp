@@ -17,8 +17,10 @@ string FinancialQuotationClient::get(string clientID,string id) {
 }
 
 
-void FinancialQuotationClient::put(string clientID,string id, double newFinancialQuotation) {
-    builder.setMethod(PUT);
-    builder.setResourceId(id);
-    const Request request = builder.getResult();
+string FinancialQuotationClient::put(Request request) {
+    string requestSerialized = serializer.serialize(request);
+    if(send(requestSenderChannel,requestSerialized)){
+        cout << "[WeatherClient] [INFO] request to update sent!" << endl;
+    }
+    return readOfChannel("PS",request.getClientId(),"FQS");
 }

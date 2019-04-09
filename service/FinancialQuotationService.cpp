@@ -1,3 +1,5 @@
+#include <utility>
+
 #include <iostream>
 #include "FinancialQuotationService.h"
 
@@ -5,18 +7,30 @@
 static bool condition = true;
 
 
+void FinancialQuotationService::sendResponse(FinancialQuotationDTO financialQuotation, string clientId) {
+    string response = serializer.serialize(std::move(financialQuotation));
+    if(client.sendToChannel("PS",std::move(clientId),"FQS",response)){
+        cout << "[FinancialQuotationService] [INFO] sent message success" << endl;
+    }
+}
+
 void FinancialQuotationService::listen() {
     std::cout << "Coin lister" << std::endl;
     while (condition){
         const string message = readOfChannel(requestsChannel);
         Request request = requestSerializer.deserialize(message);
         if(request.getMethod() == GET){
+            cout << "[FinancialQuotationService] [DEBUG] handle GET request" << endl;
             FinancialQuotationDTO financialQuotation = financialQuotations[request.getResourceId()];
-            string response = serializer.serialize(financialQuotation);
-            if(client.sendToChannel("PS",request.getClientId(),"FQS",response)){
-                cout << "[FinancialQuotationService] [INFO] sent message success" << endl;
-            }
-
+            sendResponse(financialQuotation,request.getClientId());
+        }else{
+            cout << "[FinancialQuotationService] [DEBUG] handle PUT request" << endl;
+            FinancialQuotationDTO financialQuotation = serializer.deserialize(request.getBody());
+            FinancialQuotationDTO oldFinancialQuotation = financialQuotations[request.getResourceId()];
+            financialQuotation.setCoinName(oldFinancialQuotation.getCoinName());
+            financialQuotations[request.getResourceId()] = financialQuotation;
+            FinancialQuotationDTO newFinancialQuotation = financialQuotations[request.getResourceId()];
+            sendResponse(newFinancialQuotation,request.getClientId());
         }
     }
 

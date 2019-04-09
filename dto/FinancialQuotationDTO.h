@@ -48,9 +48,14 @@ public:
     }
 
     void print(){
-        cout << "Moneda: "<< coinName << endl;
-        cout << "Compra: "<< sale << endl;
-        cout << "Venta: "<<purchase << endl;
+        cout << ""<< endl;
+        cout << ""<< endl;
+        cout << "Moneda : "<< coinName << endl;
+        cout << "Compra : "<< sale << endl;
+        cout << "Venta  : "<<purchase << endl;
+        cout << ""<< endl;
+        cout << ""<< endl;
+
     }
 
 protected:

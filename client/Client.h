@@ -19,7 +19,6 @@ public:
     bool sendToChannel(string rec,string intm,string sender, string message);
     string readOfChannel(string rec,string intm,string sender);
 protected:
-    void send(Request request);
     string readOfChannel(string channel);
     std::string resource;
     RequestBuilder builder;

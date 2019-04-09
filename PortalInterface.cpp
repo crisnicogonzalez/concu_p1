@@ -29,7 +29,7 @@ WeatherDTO PortalInterface::buildWeather(string cityId){
     std::string buffer;
     cout << "Ingrese el humedad:";
     getline(cin,buffer);
-    weather.setTemperature(atoi(buffer.c_str()));
+    weather.setHumidity(atoi(buffer.c_str()));
     cout << "Ingrese la presión:";
     getline(cin,buffer);
     weather.setPressure(atoi(buffer.c_str()));

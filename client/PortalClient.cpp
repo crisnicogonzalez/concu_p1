@@ -26,14 +26,26 @@ void PortalClient::get(Resource resource, std::string resourceId) {
 }
 
 
+
+
 void PortalClient::updateFinancialQuotation(std::string id, FinancialQuotationDTO financialQuotation) {
     cout << "[PortalClient] [INFO] PUT financial quotation" << std::endl;
-    builder
+    Request request = builder
     .setResource(COTIZACION)
     ->setClientId(to_string(getppid()))
     ->setMethod(PUT)
     ->setResourceId(id)
-    ->setBody("");
+    ->setBody(financialQuotationSerializer.serialize(financialQuotation))
+    ->getResult();
+
+
+    string requestSerialized = serializer.serialize(request);
+    if(send(requestChannel,requestSerialized)){
+        cout << "[PortalClient] [INFO] se envió request para actualizar datos" << endl;
+        string message = readOfChannel("PC",request.getClientId(),"PS");
+        financialQuotationSerializer.deserialize(message).print();
+
+    }
 
 }
 

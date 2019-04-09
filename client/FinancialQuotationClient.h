@@ -15,7 +15,7 @@ public:
         builder.setResource(COTIZACION);
     }
     string get(string clientID,string id);
-    void put(string clientID,std::string id,double newFinancialQuotation);
+    string put(Request request);
 
 protected:
     FifoEscritura requestSenderChannel;

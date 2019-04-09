@@ -22,7 +22,11 @@ void PortalService::answerRequest(string requestSerialized){
         response = weatherClient.put(request);
     }else{
         cout << "[PortalService] [INFO ] is financial quotation service" << endl;
-        response = financialQuotationClient.get(request.getClientId(),request.getResourceId());
+        if(request.getMethod() == GET){
+            response = financialQuotationClient.get(request.getClientId(),request.getResourceId());
+
+        }
+        response = financialQuotationClient.put(request);
     }
 
     cout << "[PortalService] [INFO] Service response: "<< response << endl;

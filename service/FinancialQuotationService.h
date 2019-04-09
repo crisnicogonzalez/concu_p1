@@ -26,6 +26,7 @@ protected:
     FifoLectura requestsChannel;
     map<string,FinancialQuotationDTO> financialQuotations;
     FinancialQuotationSerializer serializer;
+    void sendResponse(FinancialQuotationDTO financialQuotation,string clientId);
 };
 
 
