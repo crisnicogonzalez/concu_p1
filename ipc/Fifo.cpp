@@ -10,14 +10,15 @@ Fifo::Fifo(const std::string nombre) : nombre(nombre), fd(-1) {
 Fifo::Fifo() {}
 
 Fifo::~Fifo() {
-    std::cout << "[FIFO] [DEBUG] Detroit fifo with name: " << nombre <<std::endl;
 }
 
 void Fifo::cerrar() {
-	close ( fd );
+    std::cout << "[FIFO] [DEBUG] close: " << nombre <<std::endl;
+    close ( fd );
 	fd = -1;
 }
 
 void Fifo::eliminar() const {
-	unlink(nombre.c_str());
+    std::cout << "[FIFO] [DEBUG] delete: " << nombre <<std::endl;
+    unlink(nombre.c_str());
 }
