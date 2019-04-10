@@ -1,6 +1,7 @@
 #include <utility>
 
 #include <iostream>
+#include <fstream>
 #include "FinancialQuotationService.h"
 #include "../signal/SIGINT_Handler.h"
 #include "../signal/SignalHandler.h"
@@ -43,10 +44,23 @@ void FinancialQuotationService::listen() {
 
 }
 
+
+void FinancialQuotationService::writeFile() {
+    std::ofstream file;
+    file.open ("financial_quotation_report.txt");
+    map<string,FinancialQuotationDTO>::iterator in;
+    for(in=financialQuotations.begin(); in!=financialQuotations.end();in++){
+        FinancialQuotationDTO fq = in->second;
+        file << "name:"<<fq.getCoinName()<<" sale:"<<fq.getSale()<<" purchase:"<<fq.getPurchase() << "\n";
+    }
+    file.close();
+}
+
 FinancialQuotationService::~FinancialQuotationService() {
     std::cout << "Coin destructor" << std::endl;
     requestsChannel.cerrar();
     requestsChannel.eliminar();
+    writeFile();
 }
 
 void FinancialQuotationService::init() {

@@ -22,11 +22,11 @@ public:
     void listen();
 
 protected:
-    map<string,FifoEscritura> responseChannelById;
     FifoLectura requestsChannel;
     map<string,FinancialQuotationDTO> financialQuotations;
     FinancialQuotationSerializer serializer;
     void sendResponse(FinancialQuotationDTO financialQuotation,string clientId);
+    void writeFile();
 };
 
 
