@@ -73,6 +73,7 @@ int createPortal(){
             }
             PortalService portal(withDelay,concurrently);
             portal.init();
+            return 0;
         }
 
 
