@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/home/cristiangonzalez/Documents/clion-2019.1/bin/cmake/linux/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/home/cristiangonzalez/Documents/clion-2019.1/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -176,6 +176,33 @@ PortalMenu.s: PortalMenu.cpp.s
 PortalMenu.cpp.s:
 	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/PortalMenu.cpp.s
 .PHONY : PortalMenu.cpp.s
+
+ReadResult.o: ReadResult.cpp.o
+
+.PHONY : ReadResult.o
+
+# target to build an object file
+ReadResult.cpp.o:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/ReadResult.cpp.o
+.PHONY : ReadResult.cpp.o
+
+ReadResult.i: ReadResult.cpp.i
+
+.PHONY : ReadResult.i
+
+# target to preprocess a source file
+ReadResult.cpp.i:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/ReadResult.cpp.i
+.PHONY : ReadResult.cpp.i
+
+ReadResult.s: ReadResult.cpp.s
+
+.PHONY : ReadResult.s
+
+# target to generate assembly for a file
+ReadResult.cpp.s:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/ReadResult.cpp.s
+.PHONY : ReadResult.cpp.s
 
 client/Client.o: client/Client.cpp.o
 
@@ -771,6 +798,33 @@ service/WeatherService.cpp.s:
 	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/service/WeatherService.cpp.s
 .PHONY : service/WeatherService.cpp.s
 
+signal/SignalHandler.o: signal/SignalHandler.cpp.o
+
+.PHONY : signal/SignalHandler.o
+
+# target to build an object file
+signal/SignalHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/signal/SignalHandler.cpp.o
+.PHONY : signal/SignalHandler.cpp.o
+
+signal/SignalHandler.i: signal/SignalHandler.cpp.i
+
+.PHONY : signal/SignalHandler.i
+
+# target to preprocess a source file
+signal/SignalHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/signal/SignalHandler.cpp.i
+.PHONY : signal/SignalHandler.cpp.i
+
+signal/SignalHandler.s: signal/SignalHandler.cpp.s
+
+.PHONY : signal/SignalHandler.s
+
+# target to generate assembly for a file
+signal/SignalHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/news_service.dir/build.make CMakeFiles/news_service.dir/signal/SignalHandler.cpp.s
+.PHONY : signal/SignalHandler.cpp.s
+
 utils/Constants.o: utils/Constants.cpp.o
 
 .PHONY : utils/Constants.o
@@ -813,6 +867,9 @@ help:
 	@echo "... PortalMenu.o"
 	@echo "... PortalMenu.i"
 	@echo "... PortalMenu.s"
+	@echo "... ReadResult.o"
+	@echo "... ReadResult.i"
+	@echo "... ReadResult.s"
 	@echo "... client/Client.o"
 	@echo "... client/Client.i"
 	@echo "... client/Client.s"
@@ -879,6 +936,9 @@ help:
 	@echo "... service/WeatherService.o"
 	@echo "... service/WeatherService.i"
 	@echo "... service/WeatherService.s"
+	@echo "... signal/SignalHandler.o"
+	@echo "... signal/SignalHandler.i"
+	@echo "... signal/SignalHandler.s"
 	@echo "... utils/Constants.o"
 	@echo "... utils/Constants.i"
 	@echo "... utils/Constants.s"

@@ -45,17 +45,19 @@ void PortalService::answerRequest(const string& requestSerialized){
 
 void PortalService::listen() {
     requestChannel.abrir();
-
     while(condition){
-        string message = readOfChannel(requestChannel);
-        if(validateMessage(message)){
-            if(concurrently){
-                if(fork() == 0){
+        ReadResult result  = readOfChannel(requestChannel);
+        if(result.isOk()){
+            string message = result.getMessage();
+            if(validateMessage(message)){
+                if(concurrently){
+                    if(fork() == 0){
+                        answerRequest(message);
+                        exit(0);
+                    }
+                }else{
                     answerRequest(message);
-                    exit(0);
                 }
-            }else{
-                answerRequest(message);
             }
         }
     }

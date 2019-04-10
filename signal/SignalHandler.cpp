@@ -1,3 +1,4 @@
+#include <iostream>
 #include "SignalHandler.h"
 
 SignalHandler* SignalHandler :: instance = NULL;
@@ -15,6 +16,7 @@ SignalHandler* SignalHandler :: getInstance () {
 }
 
 void SignalHandler :: destruir () {
+    std::cout << "[Signal Handler] destroy" << std::endl;
 	if ( instance != NULL ) {
 		delete ( instance );
 		instance = NULL;
@@ -22,7 +24,7 @@ void SignalHandler :: destruir () {
 }
 
 EventHandler* SignalHandler :: registrarHandler ( int signum,EventHandler* eh ) {
-
+    std::cout << "[SignalHandler] [DEBUG] registerHandler signum " << signum <<std::endl;
 	EventHandler* old_eh = SignalHandler :: signal_handlers [ signum ];
 	SignalHandler :: signal_handlers [ signum ] = eh;
 
@@ -37,6 +39,8 @@ EventHandler* SignalHandler :: registrarHandler ( int signum,EventHandler* eh ) 
 }
 
 void SignalHandler :: dispatcher ( int signum ) {
+
+    std::cout << "[SignalHandler][DEBUG] dispatch signum "<<signum << std::endl;
 
 	if ( SignalHandler :: signal_handlers [ signum ] != 0 )
 		SignalHandler :: signal_handlers [ signum ]->handleSignal ( signum );

@@ -2,9 +2,10 @@
 
 #include <iostream>
 #include "FinancialQuotationService.h"
+#include "../signal/SIGINT_Handler.h"
+#include "../signal/SignalHandler.h"
 
 
-static bool condition = true;
 
 
 void FinancialQuotationService::sendResponse(FinancialQuotationDTO financialQuotation, string clientId) {
@@ -16,34 +17,40 @@ void FinancialQuotationService::sendResponse(FinancialQuotationDTO financialQuot
 
 void FinancialQuotationService::listen() {
     std::cout << "Coin lister" << std::endl;
-    while (condition){
-        const string message = readOfChannel(requestsChannel);
-        Request request = requestSerializer.deserialize(message);
-        if(request.getMethod() == GET){
-            cout << "[FinancialQuotationService] [DEBUG] handle GET request" << endl;
-            FinancialQuotationDTO financialQuotation = financialQuotations[request.getResourceId()];
-            sendResponse(financialQuotation,request.getClientId());
-        }else{
-            cout << "[FinancialQuotationService] [DEBUG] handle PUT request" << endl;
-            FinancialQuotationDTO financialQuotation = serializer.deserialize(request.getBody());
-            FinancialQuotationDTO oldFinancialQuotation = financialQuotations[request.getResourceId()];
-            financialQuotation.setCoinName(oldFinancialQuotation.getCoinName());
-            financialQuotations[request.getResourceId()] = financialQuotation;
-            FinancialQuotationDTO newFinancialQuotation = financialQuotations[request.getResourceId()];
-            sendResponse(newFinancialQuotation,request.getClientId());
+    SIGINT_Handler sigint_handler;
+    SignalHandler :: getInstance()->registrarHandler ( SIGINT,&sigint_handler );
+    while (sigint_handler.getGracefulQuit() == 0){
+        ReadResult result = readOfChannel(requestsChannel);
+        if(result.isOk()){
+            Request request = requestSerializer.deserialize(result.getMessage());
+            if(request.getMethod() == GET){
+                cout << "[FinancialQuotationService] [DEBUG] handle GET request" << endl;
+                FinancialQuotationDTO financialQuotation = financialQuotations[request.getResourceId()];
+                sendResponse(financialQuotation,request.getClientId());
+            }else{
+                cout << "[FinancialQuotationService] [DEBUG] handle PUT request" << endl;
+                FinancialQuotationDTO financialQuotation = serializer.deserialize(request.getBody());
+                FinancialQuotationDTO oldFinancialQuotation = financialQuotations[request.getResourceId()];
+                financialQuotation.setCoinName(oldFinancialQuotation.getCoinName());
+                financialQuotations[request.getResourceId()] = financialQuotation;
+                FinancialQuotationDTO newFinancialQuotation = financialQuotations[request.getResourceId()];
+                sendResponse(newFinancialQuotation,request.getClientId());
+            }
         }
     }
+    SignalHandler::destruir();
 
 
 }
 
 FinancialQuotationService::~FinancialQuotationService() {
     std::cout << "Coin destructor" << std::endl;
+    requestsChannel.cerrar();
+    requestsChannel.eliminar();
 }
 
 void FinancialQuotationService::init() {
-    std::cout << "Coin init" << std::endl;
-
+    std::cout << "Coin init with pid: "<< getpid() << std::endl;
     std::cout << "[DEBUG] Listen request" << std::endl;
     FinancialQuotationDTO real;
     real.setCoinName("Real");

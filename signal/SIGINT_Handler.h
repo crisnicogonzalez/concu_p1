@@ -21,6 +21,7 @@ class SIGINT_Handler : public EventHandler {
 
 		virtual int handleSignal ( int signum ) {
 			assert ( signum == SIGINT );
+			std::cout << "[SIGINT] [INFO] Handle signal "<< signum << std::endl;
 			this->gracefulQuit = 1;
 			return 0;
 		}

@@ -13,9 +13,11 @@ string WeatherClient::get(string clientID,string id) {
 
     if(send(requestSenderChannel,requestSerialized)){
         cout << "[WeatherClient] [INFO] sent message correctly!"<<endl;
+    }else{
+        cout << "[WeatherClient] [ERROR] cannot sent message, service is unvailable" << std::endl;
     }
-
     return readOfChannel("PS",request.getClientId(),"WS");
+
 }
 
 
@@ -23,6 +25,8 @@ string WeatherClient::put(Request request) {
     string requestSerialized = serializer.serialize(request);
     if(send(requestSenderChannel,requestSerialized)){
         cout << "[WeatherClient] [INFO] request to update sent!" << endl;
+    }else{
+        cout << "[WeatherClient] [ERROR] cannot sent message, service is unvailable" << std::endl;
     }
     return readOfChannel("PS",request.getClientId(),"WS");
 }

@@ -5,18 +5,20 @@
 #include <iostream>
 #include "WeatherService.h"
 #include "../request/Request.h"
+#include "../signal/SIGINT_Handler.h"
+#include "../signal/SignalHandler.h"
 
-
-static bool condition = true;
 
 WeatherService::~WeatherService() {
     std::cout << "Desconstructor temperature Reporter" << std::endl;
+    requestsChannel.cerrar();
+    requestsChannel.eliminar();
 
 }
 
 
 void WeatherService::init() {
-    std::cout << "[INFO] WeatherService init" << std::endl;
+    std::cout << "[WeatherService] [INFO] init with pid: "<< getpid() << std::endl;
     WeatherDTO mexico;
     mexico.setName("Ciudad de Mexico");
     mexico.setHumidity(10);
@@ -51,22 +53,27 @@ void WeatherService::sendResponse(WeatherDTO weather,string clientId) {
 
 void WeatherService::listen() {
     std::cout << "[WeatherService] [INFO] Listen" << std::endl;
-    while(condition){
-        const string message = readOfChannel(requestsChannel);
-        Request request = serializer.deserialize(message);
-        if(request.getMethod() == GET){
-            WeatherDTO weather = weathers[request.getResourceId()];
-            sendResponse(weather,request.getClientId());
-        }else{
-            WeatherDTO weather = weatherSerializer.deserialize(request.getBody());
-            WeatherDTO oldWeather = weathers[request.getResourceId()];
-            weather.setName(oldWeather.getName());
-            weathers[request.getResourceId()] = weather;
-            WeatherDTO newWeather = weathers[request.getResourceId()];
-            sendResponse(newWeather,request.getClientId());
+    SIGINT_Handler sigint_handler;
+    SignalHandler :: getInstance()->registrarHandler ( SIGINT,&sigint_handler );
+    while(sigint_handler.getGracefulQuit() == 0){
+        ReadResult result = readOfChannel(requestsChannel);
+        if(result.isOk()){
+            Request request = serializer.deserialize(result.getMessage());
+            if(request.getMethod() == GET){
+                WeatherDTO weather = weathers[request.getResourceId()];
+                sendResponse(weather,request.getClientId());
+            }else{
+                WeatherDTO weather = weatherSerializer.deserialize(request.getBody());
+                WeatherDTO oldWeather = weathers[request.getResourceId()];
+                weather.setName(oldWeather.getName());
+                weathers[request.getResourceId()] = weather;
+                WeatherDTO newWeather = weathers[request.getResourceId()];
+                sendResponse(newWeather,request.getClientId());
 
+            }
         }
     }
+    SignalHandler::destruir();
 
 
 

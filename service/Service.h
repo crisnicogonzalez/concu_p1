@@ -8,18 +8,19 @@
 
 #include "../ipc/FifoLectura.h"
 #include "../client/Client.h"
+#include "../ReadResult.h"
 
 using namespace std;
 
 class Service {
 
 protected:
-    string readOfChannel(FifoLectura& channel);
-    bool validateMessage(string message);
+    ReadResult readOfChannel(FifoLectura& channel);
+    bool validateMessage(const string& message);
     bool  endsWith(std::string const &value, std::string const &ending);
     Client client;
     RequestSerializer requestSerializer;
-
+    void blockSignal();
 };
 
 

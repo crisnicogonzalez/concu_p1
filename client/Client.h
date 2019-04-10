@@ -15,7 +15,7 @@ class Client {
 public:
     Client();
     ~Client();
-    bool send(FifoEscritura fifo,string message);
+    bool send(const FifoEscritura& fifo,string message);
     bool sendToChannel(string rec,string intm,string sender, string message);
     string readOfChannel(string rec,string intm,string sender);
 protected:

@@ -7,7 +7,7 @@ Client::Client(){
     std::cout << "[DEBUG] Connect to server" << std::endl;
 }
 
-bool Client::send(FifoEscritura fifo, string message) {
+bool Client::send(const FifoEscritura& fifo, string message) {
     size_t bytesWritten = fifo.escribir(static_cast<const void*>(message.c_str()),message.length());
     return bytesWritten == message.length();
 }
