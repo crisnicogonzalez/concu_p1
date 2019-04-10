@@ -3,6 +3,7 @@
 #include <utility>
 
 #include <iostream>
+#include <fstream>
 #include "WeatherService.h"
 #include "../request/Request.h"
 #include "../signal/SIGINT_Handler.h"
@@ -10,9 +11,9 @@
 
 
 WeatherService::~WeatherService() {
-    std::cout << "Desconstructor temperature Reporter" << std::endl;
     requestsChannel.cerrar();
     requestsChannel.eliminar();
+    writeFile();
 
 }
 
@@ -49,6 +50,18 @@ void WeatherService::sendResponse(WeatherDTO weather,string clientId) {
     if(client.sendToChannel("PS",std::move(clientId),"WS",response)){
         cout << "[WeatherService] [INFO] sent message correctly" << endl;
     }
+}
+
+
+void WeatherService::writeFile() {
+    std::ofstream file;
+    file.open ("weather_report.txt");
+    map<string,WeatherDTO>::iterator in;
+    for(in=weathers.begin(); in!=weathers.end();in++){
+        WeatherDTO w = in->second;
+        file << "name:"<<w.getName()<<" humidity:"<<w.getHumidity()<<" pressure:"<<w.getPressure() << " temperature:"<<w.getTemperature() << "\n";
+    }
+    file.close();
 }
 
 void WeatherService::listen() {
