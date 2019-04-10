@@ -16,6 +16,7 @@ public:
     PortalService(bool delay, bool withThreads):requestChannel(KEY_PORTAL_CHANNEL){
         withDelay = delay;
         concurrently = withThreads;
+        requestChannel.abrir();
     }
     ~PortalService();
     void init();

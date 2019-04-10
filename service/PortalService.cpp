@@ -53,7 +53,6 @@ void PortalService::answerRequest(const string& requestSerialized){
 
 
 void PortalService::listen() {
-    requestChannel.abrir();
     SIGINT_Handler sigint_handler;
     SignalHandler :: getInstance()->registrarHandler ( SIGINT,&sigint_handler );
     while(sigint_handler.getGracefulQuit() == 0){
