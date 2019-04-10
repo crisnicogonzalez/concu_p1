@@ -17,6 +17,7 @@ public:
         withDelay = delay;
         concurrently = withThreads;
     }
+    ~PortalService();
     void init();
 
 

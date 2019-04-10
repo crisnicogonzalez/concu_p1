@@ -2,6 +2,9 @@
 #include <thread>
 #include <chrono>
 #include "PortalService.h"
+#include "../signal/SIGINT_Handler.h"
+#include "../signal/SignalHandler.h"
+
 static const bool condition = true;
 using namespace std;
 
@@ -10,6 +13,12 @@ static int MILISECONDS_TO_SLEEP = 5000;
 void PortalService::init() {
     cout << "[INFO] init listen requests" << endl;
     listen();
+}
+
+PortalService::~PortalService() {
+    cout << "[PortalService] [DEBUG] detroit" << endl;
+    requestChannel.cerrar();
+    requestChannel.eliminar();
 }
 
 
@@ -45,7 +54,9 @@ void PortalService::answerRequest(const string& requestSerialized){
 
 void PortalService::listen() {
     requestChannel.abrir();
-    while(condition){
+    SIGINT_Handler sigint_handler;
+    SignalHandler :: getInstance()->registrarHandler ( SIGINT,&sigint_handler );
+    while(sigint_handler.getGracefulQuit() == 0){
         ReadResult result  = readOfChannel(requestChannel);
         if(result.isOk()){
             string message = result.getMessage();
@@ -61,6 +72,7 @@ void PortalService::listen() {
             }
         }
     }
+    SignalHandler::destruir();
 }
 
 
